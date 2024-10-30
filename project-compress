@@ -1,0 +1,54 @@
+#!/bin/bash
+
+ACTION=""
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --action)
+      ACTION="$2"
+      shift 2
+      ;;
+    --project-path)
+      PROJECT_PATH="$2"
+      shift 2
+      ;;
+    --freeze-location)
+      FREEZE_LOCATION="$2"
+      shift 2
+      ;;
+    --env-path)
+      ENV_PATH="$2"
+      shift 2
+      ;;
+    *)
+      echo "Unknown option $1"
+      exit 1
+      ;;
+  esac
+done
+
+if [[ -z "$ACTION" ]]; then
+  echo "Usage: $0 --action <freeze|unfreeze> --project-path <project_path> --freeze-location <freeze_location> [--env-path <env_path>]"
+  exit 1
+fi
+
+freeze_project() {
+  bash ./freeze-proj.sh --project-path "$PROJECT_PATH" --freeze-location "$FREEZE_LOCATION" ${ENV_PATH:+--env-path "$ENV_PATH"}
+}
+
+unfreeze_project() {
+  bash ./unfreeze-proj.sh --project-path "$PROJECT_PATH" --freeze-location "$FREEZE_LOCATION" ${ENV_PATH:+--env-path "$ENV_PATH"}
+}
+
+
+case "$ACTION" in
+  freeze)
+    freeze_project
+    ;;
+  unfreeze)
+    unfreeze_project
+    ;;
+  *)
+    echo "Invalid action: $ACTION. Use 'freeze' or 'unfreeze'."
+    exit 1
+    ;;
+esac
