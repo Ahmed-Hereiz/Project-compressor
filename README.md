@@ -16,7 +16,7 @@ Project Compressor is a command-line tool for freezing and unfreezing Python pro
 To freeze a project, use the following command:
 
 ```bash
-./project-compressor --action freeze --project-path <project_path> --freeze-location <freeze_location> [--env-path <env_path>]
+./project-compress --action freeze --project-path <project_path> --freeze-location <freeze_location> [--env-path <env_path>]
 ```
 --action: Specify whether to freeze or unfreeze the project.
 --project-path: Path to the project directory you want to freeze.
@@ -28,7 +28,7 @@ To freeze a project, use the following command:
 To unfreeze a project, use the following command:
 
 ```bash
-./project-compressor.sh --action unfreeze --project-path <project_path> --freeze-location <freeze_location> [--env-path <env_path>]
+./project-compress.sh --action unfreeze --project-path <project_path> --freeze-location <freeze_location> [--env-path <env_path>]
 ```
 ### Installation
 1. Clone the repository:
