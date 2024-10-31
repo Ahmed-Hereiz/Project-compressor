@@ -24,6 +24,11 @@ if [[ -z "$FREEZE_LOCATION" || -z "$PROJECT_PATH" ]]; then
   exit 1
 fi
 
+if [[ ! -f "$FREEZE_LOCATION/enable-unfreeze" || "$(cat "$FREEZE_LOCATION/enable-unfreeze")" != "1" ]]; then
+  echo "Unfreeze not enabled. Ensure '$FREEZE_LOCATION/enable-unfreeze' exists and contains '1'."
+  exit 1
+fi
+
 mkdir -p "$PROJECT_PATH"
 cd "$PROJECT_PATH" || exit
 

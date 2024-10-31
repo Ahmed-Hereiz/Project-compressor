@@ -26,11 +26,6 @@ if [[ -z "$PROJECT_PATH" || -z "$FREEZE_LOCATION" ]]; then
   exit 1
 fi
 
-if [[ ! -f "$FREEZE_LOCATION/enable-unfreeze" || "$(cat "$FREEZE_LOCATION/enable-unfreeze")" != "1" ]]; then
-  echo "Unfreeze not enabled. Ensure '$FREEZE_LOCATION/enable-unfreeze' exists and contains '1'."
-  exit 1
-fi
-
 mkdir -p "$FREEZE_LOCATION"
 
 if [[ -z "$ENV_PATH" ]]; then
@@ -74,7 +69,6 @@ cat <<EOF > "$METADATA_PATH"
   "timestamp": "$(date -u +"%Y-%m-%dT%H:%M:%SZ")",
   "user": "$(whoami)",
   "os": "$(uname -s)",
-  "python_version": "$(python --version 2>&1 | awk '{print $2}')",
   "layer1_file_count": $LAYER1_FILE_COUNT
 }
 EOF
