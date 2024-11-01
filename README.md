@@ -45,3 +45,5 @@ cd <repository_name>
 - Bash shell
 - Python 3
 - Python Virtual Environment (venv)
+
+Soon adding project documentation with AI... 
